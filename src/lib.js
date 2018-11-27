@@ -9,18 +9,29 @@ const getGridDetails = function() {
   return {gridSize, aliveCells};
 };
 
+
 const generateGrid = function(size, aliveCells) {
   let gridValues = generate2DGrid(size, size);
   let grid = {
     gridValues,
-    toggleCell: function(pos) {
+    getCellPos:function(pos){
       let row = parseInt((pos - 1) / gridValues.length);
       let column = (pos - 1) % gridValues.length;
-      this.gridValues[row][column] = Math.abs(this.gridValues[row][column] - 1);
+      return {row,column};
     },
+
+    killCell : function(pos) {
+      let {row,column} = this.getCellPos(pos);
+      this.gridValues[row][column] = 0 ; 
+    },
+
+    makeCellAlive : function(pos) {
+      let {row,column} = this.getCellPos(pos);
+      this.gridValues[row][column] = 1 ; 
+    }
   };
   for (let pos of aliveCells) {
-    grid.toggleCell(pos);
+    grid.makeCellAlive(pos);
   }
   return grid;
 };
