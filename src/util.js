@@ -1,18 +1,20 @@
 const generate2DGrid = function(rows,columns){
-  let grid = new Array(rows);
-  for(let index=0;index<rows;index++){
-    grid[index] =  new Array(columns).fill(0);
-  }
+  let grid = new Array(rows).fill(rows);
+  grid = grid.map(x=> new Array(x).fill(0));
   return grid;
 }
 
+const justify= function(arr){
+  return arr.map(x=> " "+x+" ");
+}
+
+exports.justify = justify;
+
+
 const displayGrid = function(gridValues) {
-  let grid = [];
-  for (let row = 0; row < gridValues.length; row++) {
-    let justifiedCells = gridValues[row].map(x=>' '+x+' ').join('|');
-    grid.push(justifiedCells);
-  }
-  return grid.join('\n-----------\n');
+  let line = new Array(gridValues.length).fill("----").join("");
+  let grid = gridValues.map((a)=>justify(a).join("|"))
+  return grid.join('\n'+line+'\n');
 };
 
 const getCellPos = function(pos,size) {
