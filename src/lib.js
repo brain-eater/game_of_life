@@ -1,6 +1,10 @@
 let read = require('readline-sync');
 let {getCellPos,
-  generate2DGrid
+  generate2DGrid,
+  extractNeighbourElements,
+  duplicate2dGrid,
+  convertTo1D,
+  displayGrid
 } = require('./util.js');
 
 
@@ -34,3 +38,19 @@ const startGame = function() {
   let grid = generateGrid(gridSize, aliveCells);
   console.log(displayGrid(grid) + '\n');
 }
+
+const countNeighbours = function(row, column, grid) {
+  let cell = grid[row][column];
+  let neighbours = extractNeighbours(row,column,grid);
+  let AliveNbs = convertTo1D(neighbours).filter(x=>x==1);
+  return AliveNbs.length-cell;
+};
+
+exports.countNeighbours = countNeighbours;
+
+
+const extractNeighbours = function(row,column,Array_2D){
+  let extractNbWithColumn = extractNeighbourElements.bind(null,column);
+  return  extractNeighbourElements(row,Array_2D).map(extractNbWithColumn);
+}
+exports.extractNeighbours = extractNeighbours;
