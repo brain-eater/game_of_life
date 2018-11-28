@@ -21,6 +21,12 @@ const getCellPos = function(pos,size) {
   return {row, column};
 }
 
+const convertTo1D= function(Array_2D){
+  return Array_2D.reduce((x,y)=>x.concat(y));
+}
+
+exports.convertTo1D = convertTo1D;
+
 exports.getCellPos = getCellPos;
 
 exports.displayGrid = displayGrid;

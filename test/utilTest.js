@@ -1,6 +1,7 @@
 const deepEqual = require('assert').deepEqual;
 const {displayGrid,
       getCellPos,
+      convertTo1D,
        generate2DGrid} = require('../src/util.js');
 
 describe( 'generate2DGrid' , function() {
@@ -21,5 +22,11 @@ describe( 'getCellPos' , function() {
     deepEqual(getCellPos(1,3),{row:0,column:0});
     deepEqual(getCellPos(5,3),{row:1,column:1});
     deepEqual(getCellPos(9,3),{row:2,column:2});
+  });})
+
+describe( 'convertTo1D' ,function() {
+  it( 'should take 2D array and convert it to 1D' , function() {
+    deepEqual(convertTo1D([[1,2],[1,2]]),[1,2,1,2]);
+    deepEqual(convertTo1D([[1],[2]]),[1,2]);
   });
 })
