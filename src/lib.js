@@ -2,13 +2,18 @@ let read = require('readline-sync');
 let {generate2DGrid} = require('./util.js');
 
 const getGridDetails = function() {
-  let gridSize = parseInt(read.question('Enter grid size:\n'));
-  let aliveCells = read
-    .question("Enter alive cell positions seperated by ',' :\n")
-    .split(',');
+  let gridSize = parseInt(getGridSize());
+  let aliveCells = getAliveCells().split(',');
   return {gridSize, aliveCells};
 };
 
+const getGridSize = function() {
+  return read.question('Enter grid size:\n');
+};
+
+const getAliveCells = function() {
+  return read.question('Enter alive cell positions seperated by "," :\n');
+};
 
 const generateGrid = function(size, aliveCells) {
   let gridValues = generate2DGrid(size, size);
