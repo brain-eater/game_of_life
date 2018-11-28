@@ -25,6 +25,15 @@ const convertTo1D= function(Array_2D){
   return Array_2D.reduce((x,y)=>x.concat(y));
 }
 
+const extractNeighbourElements = function(pos,array){
+  let extractedArray = [];
+  extractedArray.push(array[pos-1]);
+  extractedArray.push(array[pos]);
+  extractedArray.push(array[pos+1]);
+  return extractedArray.filter(x=>x!=undefined);
+}
+exports.extractNeighbourElements = extractNeighbourElements;
+
 exports.convertTo1D = convertTo1D;
 
 exports.getCellPos = getCellPos;
