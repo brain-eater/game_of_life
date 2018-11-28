@@ -37,7 +37,15 @@ const startGame = function() {
   const {gridSize, aliveCells} = getGridDetails();
   let grid = generateGrid(gridSize, aliveCells);
   console.log(displayGrid(grid) + '\n');
+  let iterations = parseInt(read.question('Enter number of iterations:\n'));
+  while (iterations) {
+    iterateGrid(grid);
+    console.log(displayGrid(grid)+"\n");
+    iterations--;
+  }
 }
+
+exports.startGame = startGame;
 
 const countNeighbours = function(row, column, grid) {
   let cell = grid[row][column];
@@ -56,7 +64,6 @@ const extractNeighbours = function(row,column,Array_2D){
 exports.extractNeighbours = extractNeighbours;
 
 const iterateGrid = function(grid) {
- console.log(grid); 
   let gridSize = grid.length;
   let currentState = duplicate2dGrid(grid);
   for (let row = 0; row < gridSize; row++) {
