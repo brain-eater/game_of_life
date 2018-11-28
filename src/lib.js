@@ -1,5 +1,8 @@
 let read = require('readline-sync');
-let {generate2DGrid} = require('./util.js');
+let {getCellPos,
+  generate2DGrid
+} = require('./util.js');
+
 
 const getGridDetails = function() {
   let gridSize = parseInt(getGridSize());
@@ -26,18 +29,8 @@ const generateGrid = function(size, aliveCells) {
 
 exports.generateGrid = generateGrid;
 
-const getCellPos = function(pos,size) {
-  let row = parseInt((pos - 1) / size);
-  let column = (pos - 1) % size;
-  return {row, column};
-}
-
-exports.getCellPos = getCellPos;
-
-
-const initGrid = function() {
+const startGame = function() {
   const {gridSize, aliveCells} = getGridDetails();
   let grid = generateGrid(gridSize, aliveCells);
-  console.log(grid);
-  return grid;
-};
+  console.log(displayGrid(grid) + '\n');
+}
