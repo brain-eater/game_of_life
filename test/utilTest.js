@@ -1,5 +1,6 @@
 const deepEqual = require('assert').deepEqual;
 const {displayGrid,
+      duplicate2dGrid,
       getCellPos,
       convertTo1D,
       extractNeighbourElements,
@@ -39,3 +40,11 @@ describe( 'extractNeighbourElements' , function() {
     deepEqual(extractNeighbourElements(2,[1,2,3]),[2,3]);
   });
 })
+
+describe('duplicate2dGrid', function() {
+  it('should return duplicate of the given grid', function() {
+    deepEqual(duplicate2dGrid([[1, 2], [1, 2]]), [[1, 2], [1, 2]]);
+    deepEqual(duplicate2dGrid([[], []]), [[], []]);
+    deepEqual(duplicate2dGrid([[]]), [[]]);
+  });
+});

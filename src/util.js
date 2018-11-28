@@ -32,6 +32,13 @@ const extractNeighbourElements = function(pos,array){
   extractedArray.push(array[pos+1]);
   return extractedArray.filter(x=>x!=undefined);
 }
+
+const duplicate2dGrid = function(grid){
+  return grid.map(x=>x.slice());
+}
+
+exports.duplicate2dGrid = duplicate2dGrid;
+
 exports.extractNeighbourElements = extractNeighbourElements;
 
 exports.convertTo1D = convertTo1D;
