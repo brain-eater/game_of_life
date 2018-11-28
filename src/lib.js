@@ -54,3 +54,28 @@ const extractNeighbours = function(row,column,Array_2D){
   return  extractNeighbourElements(row,Array_2D).map(extractNbWithColumn);
 }
 exports.extractNeighbours = extractNeighbours;
+
+const iterateGrid = function(grid) {
+ console.log(grid); 
+  let gridSize = grid.length;
+  let currentState = duplicate2dGrid(grid);
+  for (let row = 0; row < gridSize; row++) {
+    for (let column = 0; column < gridSize; column++) {
+      let noOfNeighbours = countNeighbours(row, column, currentState);
+      if (noOfNeighbours != 2 ) {
+        grid[row][column] = evaluateStatus(noOfNeighbours);
+      }
+    }
+  }
+};
+
+exports.iterateGrid = iterateGrid;
+
+const evaluateStatus = function(noOfNeighbours){
+  if (noOfNeighbours == 3) {
+    return 1;
+  }
+  return 0;
+}
+
+exports.evaluateStatus = evaluateStatus;

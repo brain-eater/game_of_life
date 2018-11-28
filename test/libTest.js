@@ -1,5 +1,7 @@
 const deepEqual = require('assert').deepEqual;
 let {
+  evaluateStatus,
+  iterateGrid,
   countNeighbours,
   extractNeighbours,
   generateGrid} = require('../src/lib.js');
@@ -25,5 +27,20 @@ describe ( 'extractNeighbours' , function() {
   it( 'should return all the neighbours for the given cell' , function() {
     deepEqual(extractNeighbours(0,0,[[0,1,1],[0,1,1],[0,1,1]]),[ [ 0, 1 ], [ 0, 1 ] ]);
     deepEqual(extractNeighbours(1,1,[[0,1,1],[0,1,1],[0,1,1]]),[ [ 0, 1 ,1], [ 0, 1 ,1],[0,1,1] ]);
+  });
+})
+
+describe( 'iterateGrid'  , function() {
+  it( 'should iterate the grid to next generations' , function() {
+    let grid = [[0,1,1],[1,0,0],[1,0,1]];
+    iterateGrid(grid);
+    deepEqual(grid,[ [ 0, 1, 0 ], [ 1, 0, 1 ], [ 0, 1, 0 ] ]);
+  });
+});
+
+describe( 'evaluateStatus' , function() {
+  it( 'it should evaluate the state of the cell using number of its neighbours' , function() {
+    deepEqual(evaluateStatus(1),0);
+    deepEqual(evaluateStatus(3),1);
   });
 })
