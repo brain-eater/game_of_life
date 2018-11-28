@@ -15,6 +15,14 @@ const displayGrid = function(gridValues) {
   return grid.join('\n-----------\n');
 };
 
+const getCellPos = function(pos,size) {
+  let row = parseInt((pos - 1) / size);
+  let column = (pos - 1) % size;
+  return {row, column};
+}
+
+exports.getCellPos = getCellPos;
+
 exports.displayGrid = displayGrid;
 
 exports.generate2DGrid = generate2DGrid;  

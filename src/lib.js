@@ -16,32 +16,24 @@ const getAliveCells = function() {
 };
 
 const generateGrid = function(size, aliveCells) {
-  let gridValues = generate2DGrid(size, size);
-  let grid = {
-    gridValues,
-    getCellPos:function(pos){
-      let row = parseInt((pos - 1) / gridValues.length);
-      let column = (pos - 1) % gridValues.length;
-      return {row,column};
-    },
-
-    killCell : function(pos) {
-      let {row,column} = this.getCellPos(pos);
-      this.gridValues[row][column] = 0 ; 
-    },
-
-    makeCellAlive : function(pos) {
-      let {row,column} = this.getCellPos(pos);
-      this.gridValues[row][column] = 1 ; 
-    }
-  };
+  let grid = generate2DGrid(size, size);
   for (let pos of aliveCells) {
-    grid.makeCellAlive(pos);
+    let {row, column} = getCellPos(pos,grid.length);
+    grid[row][column] = 1;
   }
   return grid;
 };
 
 exports.generateGrid = generateGrid;
+
+const getCellPos = function(pos,size) {
+  let row = parseInt((pos - 1) / size);
+  let column = (pos - 1) % size;
+  return {row, column};
+}
+
+exports.getCellPos = getCellPos;
+
 
 const initGrid = function() {
   const {gridSize, aliveCells} = getGridDetails();
